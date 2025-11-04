@@ -1,0 +1,12 @@
+javac FractionalKnapsack.java
+java FractionalKnapsack
+
+
+| File                        | What it Represents                 | Created Because Of                   |
+| --------------------------- | ---------------------------------- | ------------------------------------ |
+| `Item.class`                | Compiled bytecode for `Item` class | Separate top-level class             |
+| `UserInputKnapsack.class`   | Main class with `main()`           | Your public class                    |
+
+
+why 2 class files ?
+

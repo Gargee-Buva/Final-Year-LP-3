@@ -1,0 +1,43 @@
+javac Fibonacci.java
+java Fibonacci
+
+
+⚙️ Explanation
+1️⃣ Recursive Approach:
+Logic:
+F(n)=F(n−1)+F(n−2)
+
+Base Case:
+F(0)=0, 
+F(1)=1
+
+Drawback:
+The same subproblems are recomputed multiple times, making it inefficient for large n.
+
+Example:
+For n = 5:
+→ Calls: F(5) → F(4), F(3) → ... repeated calls for F(2), F(1)
+
+2️⃣ Iterative (Non-Recursive) Approach:
+Logic:
+Use two variables to store the previous two Fibonacci numbers and compute sequentially in a loop.
+
+Advantage:
+Much faster and uses constant space
+
+
+Complexity Analysis
+| Approach      | Time Complexity | Space Complexity                       | Remarks                                           |
+| ------------- | --------------- | -------------------------------------- | ------------------------------------------------- |
+| **Recursive** | **O(2ⁿ)**       | **O(n)** (due to recursion call stack) | Exponential growth due to overlapping subproblems |
+| **Iterative** | **O(n)**        | **O(1)**                               | Linear time, constant space — best for large `n`  |
+
+
+
+Enter n: 7
+
+Using Recursive Method:
+0 1 1 2 3 5 8 
+
+Using Iterative Method:
+0 1 1 2 3 5 8 

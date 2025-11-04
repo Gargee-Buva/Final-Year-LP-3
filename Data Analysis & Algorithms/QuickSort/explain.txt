@@ -1,0 +1,6 @@
+| Variant       | Best Case  | Average Case              | Worst Case   | Space Complexity |
+| ------------- | ---------- | ------------------------- | ------------ | ---------------- |
+| Deterministic | O(n log n) | O(n log n)                | O(n²)        | O(log n)         |
+| Randomized    | O(n log n) | **O(n log n)** (expected) | O(n²) (rare) | O(log n)         |
+
+do it for every practical program
