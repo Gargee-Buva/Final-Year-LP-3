@@ -3,3 +3,79 @@ two states: a) Normal State – Not Spam, b) Abnormal State – Spam. Use K-Near
 Neighbors and Support Vector Machine for classification. Analyze their 
 performance.  Dataset link: The emails.csv dataset on the Kaggle   
 https://www.kaggle.com/datasets/balaka18/email-spam-classification-dataset-csv  
+
+| Library            | Purpose                         |
+| ------------------ | ------------------------------- |
+| pandas             | Data handling & analysis        |
+| numpy              | Numerical computation           |
+| seaborn            | Statistical visualization(heatmaps, pairplots, boxplots, etc.)       |
+| matplotlib         | General plotting (like line graphs, bar charts, histograms, etc.)             |
+| %matplotlib inline | Show plots inside notebook      |
+| warnings           | Hide unwanted warnings          |
+| train_test_split   | Split data for training/testing |
+| SVC                | Machine learning classifier     |
+| metrics            | Evaluate model performance      |
+
+
+df.dropna(axis=0, inplace=True)
+| Parameter       | Meaning                                                  |
+| --------------- | -------------------------------------------------------- |
+| `axis=0`        | Drop **rows** with missing values (default)              |
+| `axis=1`        | Drop **columns** with missing values                     |
+| `inplace=True`  | Apply changes directly to `df`                           |
+| `inplace=False` | Return a new DataFrame instead of modifying the original |
+
+The command df.dropna(inplace=True) in pandas is used to remove rows (or columns) that contain missing (NaN) values from your DataFrame.
+
+
+* df.drop(['Email No.'], axis=1, inplace=True)
+Purpose:
+Removes the column named Email No. from the DataFrame.
+
+axis=1 → means you’re dropping a column (if it were axis=0, it would drop rows).
+inplace=True → applies the change directly to the original DataFrame (df), not a copy.
+
+* X = df.drop(['Prediction'], axis=1)
+
+Purpose:
+Creates a new variable X that contains all input features (independent variables).
+Drops only the Prediction column from df, since that’s the target/output label.
+Does not use inplace=True, so it doesn’t modify df — it just creates a copy in X.
+
+* knn = KNeighborsClassifier(n_neighbors=7)
+n_neighbors=7 → means the algorithm will look at the 7 nearest data points to decide the class.
+
+Example:
+
+If you want to classify one test email:
+The model finds the 7 closest emails from the training data.
+If 5 out of those 7 are “spam,” it predicts spam (1).
+Otherwise, not spam (0).
+
+* knn.fit(X_train, y_train)
+This is the training phase.
+
+Purpose:
+It tells the model to learn patterns from the training data:
+X_train: input features (word counts, etc.)
+y_train: correct labels (spam or not spam)
+
+* A confusion matrix is a table that shows how well your classification model performed — it compares the actual labels (y_test) with the predicted labels (y_pred).
+It’s especially useful for binary classification (like Spam = 1, Not Spam = 0).
+
+|               | **Predicted: 0**        | **Predicted: 1**        |
+| ------------- | ----------------------- | ----------------------- |
+| **Actual: 0** | **True Negative (TN)**  | **False Positive (FP)** |
+| **Actual: 1** | **False Negative (FN)** | **True Positive (TP)**  |
+
+
+model = SVC(C = 1)
+This line creates an SVM (Support Vector Classifier) model object from sklearn.svm.
+
+🧠 What is SVM?
+
+SVM is a supervised machine learning algorithm used for classification (and regression).
+It tries to find the best possible boundary (hyperplane) that separates data points of different classes.
+
+In your case:
+The model tries to find a boundary that best separates Spam (1) vs. Not Spam (0) emails.
