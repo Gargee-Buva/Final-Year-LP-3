@@ -47,4 +47,8 @@ What happened in the last step:
 
 5. But you still earned fractional value: (20/22) × 77 ≈ 70 units.
 
+
 // ratio is the “value per unit weight” — the greedy metric used for fractional knapsack
+//The goal of the fractional knapsack is to fill the bag completely (60 kg here)
+while maximizing total value by choosing items in order of their value-to-weight ratio.
+//That’s the greedy strategy — always take the “most valuable per kg” item next until there’s no space left.
