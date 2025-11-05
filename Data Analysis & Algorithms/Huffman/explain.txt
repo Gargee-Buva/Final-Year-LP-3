@@ -1,0 +1,238 @@
+Huffman’s algorithm doesn’t grow a single tree branch continuously —
+it merges whatever two nodes have the smallest frequencies at that moment.
+
+If a tree which growing has a node say 18 but there are two more nodes left which are less than that then choose them and make a small tree later merge them  
+
+Code Info :-
+1. A Priority Queue (PQ) is a special kind of queue where each element has a priority, and the element with the highest priority (or lowest, depending on the rule) is served first.
+In a normal queue, elements are removed in FIFO order (First In, First Out).
+In a priority queue, elements are removed in priority order.
+So instead of order of arrival, removal is based on a comparable key — for example, the smallest frequency, or highest score, etc
+
+2. Why do we need a Priority Queue in Huffman?
+
+Huffman’s greedy strategy says:
+“At each step, pick the two smallest frequencies, merge them, and reinsert their sum.”
+
+So we need a data structure that can:
+Always find the smallest two frequencies quickly,
+Efficiently insert the new merged node back into the collection.
+A priority queue (min-heap) does exactly this in O(log n) time for each operation.
+
+We import both Map and HashMap because Map is the interface defining key–value behavior, while HashMap is the concrete class that implements it. We use Map for flexibility and HashMap to create the actual object.
+
+* this.ch = '\0'; assigns a null (empty) character to indicate that this node is an internal node with no actual character — it only stores the combined frequency of its child nodes.
+* static - Can be called without creating an object of the class
+
+*When you call freqMap.entrySet(), it gives you a set of entries,
+where each entry is a pair:
+key = character (like 'a')
+value = frequency (like 5)
+
+So each e in the loop represents one entry
+This loop takes each character and its frequency from freqMap,
+creates a Huffman node for it,
+and adds all those nodes into the priority queue — ready to build the Huffman tree.
+
+
+Time & space complexity (summary)
+Let:
+m = length of input (characters)
+k = number of distinct characters
+B = number of bits in the encoded output (sum of freq×code-length)
+
+Time complexity
+1.Build frequency map: O(m)
+2.Build priority queue & tree: O(k log k)
+3.Generate codes: O(k) (tree traversal)
+4.Encode: O(B) (≈ O(m × average code length))
+5. Decode: O(B)
+6. Overall: O(m) + O(k log k) + O(B) → typically dominated by O(k log k + B).
+
+Space complexity
+1.Frequency map: O(k)
+2.Huffman tree nodes: O(k) (≈ 2k − 1 nodes total)
+3.Code map: O(k × avg_code_length) (sum of code lengths)
+4.Encoded string: O(B)
+5.Recursion stack: O(h) where h = tree height (≤ k)
+6.Total extra space: O(k + B) (excluding input storage).
+
+ALGORITHM :-
+Step 1: Start
+Begin the program execution.
+
+Step 2: Input the text
+Read a string text from the user.
+If the string is empty, print a message and exit.
+
+Step 3: Create a frequency map
+Initialize an empty map freqMap.
+For each character c in text:
+If c already exists in freqMap, increase its count by 1.
+Otherwise, insert c with frequency 1.
+
+👉 This creates pairs of the form (character → frequency).
+
+Example:
+For input "aaaaabbbccd",
+freqMap = { a:5, b:3, c:2, d:1 }.
+
+Step 4: Create leaf nodes for each character
+Create an empty priority queue pq (min-heap) that sorts nodes by their frequency.
+For each entry (ch, freq) in freqMap:
+Create a new Node(ch, freq) and add it to the queue.
+Each Node contains:
+ch → the character,
+freq → its frequency,
+left and right pointers → initially null.
+
+Step 5: Handle single-character edge case
+If the queue has only one node (pq.size() == 1):
+
+Remove that node and store it in only.
+
+Create a new node:
+new Node(only.freq, only, null)
+and add it back to the queue.
+
+👉 This ensures even one-character input has a valid Huffman tree.
+
+Step 6: Build the Huffman Tree
+Repeat until only one node remains in the priority queue:
+Remove the two nodes with the smallest frequencies:
+
+left = pq.poll();
+right = pq.poll();
+
+
+Create a new parent node:
+parent = new Node(left.freq + (right != null ? right.freq : 0), left, right);
+The parent node’s frequency is the sum of the two child frequencies.
+The parent node has no character (set as '\0').
+Add this new parent node back into the queue:
+pq.add(parent);
+
+When only one node remains in the queue, it represents the root of the Huffman tree.
+Return that node:
+return pq.poll();
+
+Step 7: Generate Huffman Codes
+Initialize an empty map codeMap to store codes for each character.
+Call the recursive function:
+generateCodes(root, "", codeMap)
+
+
+where:
+
+root → root node of the Huffman tree
+prefix → code built during traversal
+codeMap → stores final codes
+
+Recursive logic:
+If root is null, return.
+If root is a leaf node:
+If prefix is empty, assign "0".
+
+Otherwise, assign the current prefix as the code for that character.
+
+Otherwise:
+
+Move left: generateCodes(root.left, prefix + '0', codeMap)
+Move right: generateCodes(root.right, prefix + '1', codeMap)
+
+Step 8: Encode the input text
+
+Initialize an empty string builder sb.
+For each character c in the original text:
+Append its code from codeMap to sb.
+The result is the encoded bitstring:
+encoded = sb.toString();
+
+Step 9: Decode the bitstring
+
+Initialize a string builder decoded = "".
+Set current = root.
+For each bit in the encoded string:
+If bit = '0', move to current.left.
+If bit = '1', move to current.right.
+If current.isLeaf():
+
+Append current.ch to decoded.
+
+Reset current to root.
+
+Finally, decoded will be the original text.
+
+Step 10: Display Results
+
+Print:
+
+Huffman Codes (character : code)
+
+Original text
+
+Encoded bitstring
+
+Decoded text
+
+Step 11: End
+🧮 Example Execution
+Input:
+aaaaabbbccd
+
+Frequency Map:
+a:5, b:3, c:2, d:1
+
+Huffman Tree Building:
+
+Merge d(1) + c(2) → node(3)
+
+Merge node(3) + b(3) → node(6)
+
+Merge a(5) + node(6) → root(11)
+
+Huffman Codes:
+a : 0
+b : 10
+d : 110
+c : 111
+
+Encoded Bitstring:
+00000101010110111111110
+
+Decoded Text:
+aaaaabbbccd
+
+
+✅ Encoding and decoding are successful.
+
+⚙️ Time and Space Complexity
+Step	Time Complexity	Space Complexity
+Build frequency map	O(n)	O(k)
+Build Huffman tree	O(k log k)	O(k)
+Generate codes	O(k)	O(k)
+Encode + Decode	O(B)	O(B)
+
+Overall:
+
+⏱ Time = O(k log k + B)
+
+💾 Space = O(k + B)
+where
+n = input length,
+k = number of unique characters,
+B = length of encoded bitstring.
+
+🧠 Summary (in plain words)
+
+Count frequency of each character.
+
+Insert all characters into a priority queue sorted by frequency.
+
+Repeatedly combine the two smallest nodes into a parent until one tree remains.
+
+Traverse the tree to assign binary codes to each character.
+
+Encode the input text using these codes.
+
+Decode it back using the tree to verify correctness.
