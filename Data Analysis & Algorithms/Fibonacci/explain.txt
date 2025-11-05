@@ -2,42 +2,64 @@ javac Fibonacci.java
 java Fibonacci
 
 
-⚙️ Explanation
-1️⃣ Recursive Approach:
+The Fibonacci series is a sequence of numbers where each number is the sum of the two preceding ones.
+
+Formula : F(n)=F(n−1)+F(n−2)
+Base Case: F(0)=0, F(1)=1
+
+1️⃣ Recursive Method
+
+The recursive method directly uses the mathematical definition.
 Logic:
-F(n)=F(n−1)+F(n−2)
 
-Base Case:
-F(0)=0, 
-F(1)=1
+If n <= 1, return n (base case).
+Else, return F(n-1) + F(n-2) (recursive case).
 
-Drawback:
-The same subproblems are recomputed multiple times, making it inefficient for large n.
+Example :-
+F(5)
+= F(4) + F(3)
+= (F(3) + F(2)) + (F(2) + F(1))
+= ((F(2) + F(1)) + (F(1) + F(0))) + ((F(1) + F(0)) + F(1))
+= (F(1)+F(0)) + F(1) + (F(1) + F(0)) + ((F(1) + F(0)) + F(1))
+=   1 + 1 + 1 + 1 + 1
+=   5 
 
-Example:
-For n = 5:
-→ Calls: F(5) → F(4), F(3) → ... repeated calls for F(2), F(1)
+There is a loop in the main function , which runs for every number from 0 to n and calculates the values then puts them into the series in final output
 
-2️⃣ Iterative (Non-Recursive) Approach:
-Logic:
-Use two variables to store the previous two Fibonacci numbers and compute sequentially in a loop.
+Speed : Slow for large n
+Reliability : Simple but inefficient
 
-Advantage:
-Much faster and uses constant space
+2️⃣ Iterative Method
+
+Initial values: prev = 0 , curr = 1
+
+Now we enter the loop (i goes from 2 → 5):
+| i | Calculation  | next | prev     | curr     |
+| - | ------------ | ---- | -------- | -------- |
+| 2 | next = 0 + 1 | 1    | curr → 1 | next → 1 |
+| 3 | next = 1 + 1 | 2    | curr → 1 | next → 2 |
+| 4 | next = 1 + 2 | 3    | curr → 2 | next → 3 |
+| 5 | next = 2 + 3 | 5    | curr → 3 | next → 5 |
+
+F(0), F(1), F(2), F(3), F(4)
+Output: 0 1 1 2 3
 
 
-Complexity Analysis
-| Approach      | Time Complexity | Space Complexity                       | Remarks                                           |
-| ------------- | --------------- | -------------------------------------- | ------------------------------------------------- |
-| **Recursive** | **O(2ⁿ)**       | **O(n)** (due to recursion call stack) | Exponential growth due to overlapping subproblems |
-| **Iterative** | **O(n)**        | **O(1)**                               | Linear time, constant space — best for large `n`  |
+Speed : Fast and efficient
+Reliability : Slightly longer but better performance
+
+
+Method          Time Complexity                         Reason 
+Recursive           O(2ⁿ)                   Each call generates 2 more recursive calls 
+                                            (exponential growth).
+
+Iterative           O(n)                    Single loop runs n-2 times.
 
 
 
-Enter n: 7
+Method          Space Complexity                       Reason 
+Recursive           O(n)                   Due to recursive call stack depth.
 
-Using Recursive Method:
-0 1 1 2 3 5 8 
+Iterative           O(1)                   Uses only 3 integer variables regardless of n.
 
-Using Iterative Method:
-0 1 1 2 3 5 8 
+
