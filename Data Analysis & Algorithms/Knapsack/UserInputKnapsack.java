@@ -1,7 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-//to store item value and weight
 class Item {
     int value, weight;
     Item(int value, int weight) {
@@ -22,10 +21,10 @@ public class UserInputKnapsack {
 
         for (Item item : items) {
             if (capacity >= item.weight) {
-                capacity -= item.weight;
-                totalValue += item.value;
+                capacity = capacity - item.weight;
+                totalValue = totalValue + item.value;
             } else {
-                totalValue += item.value * ((double) capacity / item.weight);
+                totalValue = totalValue + item.value * ((double) capacity / item.weight);
                 break;
             }
         }
