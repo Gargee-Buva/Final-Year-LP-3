@@ -82,4 +82,16 @@ If solveNQueens(0) returns true → print the board as the final N-Queens matrix
 Else → display “No solution exists for this placement.”
 
 
+| Resource  | Complexity | Reason                                             |
+| --------- | ---------- | -------------------------------------------------- |
+| **Time**  | O(N × N!)  | N recursive levels × N choices × O(N) safety check |
+| **Space** | O(N²)      | N×N board + recursion stack                        |
+
+| Step  | Meaning                                                          |
+| ----- | ---------------------------------------------------------------- |
+| N!    | total possible queen arrangements (1 per row, different columns) |
+| × N   | time spent checking diagonals and columns for safety             |
+| O(N²) | board size and recursion stack                                   |
+
+
 
