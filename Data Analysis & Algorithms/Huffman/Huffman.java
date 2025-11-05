@@ -8,7 +8,7 @@ import java.util.Scanner;
 class Node {
     char ch;        // character for leaf nodes
     int freq;       // frequency for leaf or sum for internal nodes
-    Node left, right;
+    Node left, right; //pointers to left and right children
 
     Node(char ch, int freq) {
         this.ch = ch;
@@ -16,12 +16,13 @@ class Node {
     }
 
     Node(int freq, Node left, Node right) {
-        this.ch = '\0';
+        this.ch = '\0'; //for storing sum of frequencies in internal nodes
         this.freq = freq;
         this.left = left;
         this.right = right;
     }
 
+    //checks if node is leaf
     boolean isLeaf() {
         return left == null && right == null;
     }
@@ -44,18 +45,21 @@ public class Huffman {
         if (pq.size() == 1) {
             // duplicate the single node to create a valid tree with two children
             Node only = pq.poll();
+            //pq.poll() removes and returns the smallest element (here, the only node) from the priority queue.
+            //That node is then stored in the variable only.
             pq.add(new Node(only.freq, only, null));
         }
 
         // Combine two smallest nodes until one tree remains
         while (pq.size() > 1) {
-            Node left = pq.poll();
+            Node left = pq.poll(); //Removes the smallest-frequency node and stores it in left.
             Node right = pq.poll();
-            Node parent = new Node(left.freq + (right != null ? right.freq : 0), left, right);
-            pq.add(parent);
+            Node parent = new Node(left.freq + (right != null ? right.freq : 0), left, right); //This adds the frequencies of both nodes.
+            pq.add(parent); //combined node is put back into the priority queue
+
         }
 
-        return pq.poll(); // root
+        return pq.poll(); // you’re returning the root node of the complete Huffman tree to the caller.
     }
 
     // Generate Huffman codes (recursive)
