@@ -52,3 +52,12 @@ What happened in the last step:
 //The goal of the fractional knapsack is to fill the bag completely (60 kg here)
 while maximizing total value by choosing items in order of their value-to-weight ratio.
 //That’s the greedy strategy — always take the “most valuable per kg” item next until there’s no space left.
+
+
+| Operation               | Complexity                  |
+| ----------------------- | --------------------------- |
+| Sorting items           | O(n log n)                  |
+| Iterating through items | O(n)                        |
+| **Total Time**          | O(n log n)                  |
+| **Space**               | O(1) (in-place sorting)     |
+
