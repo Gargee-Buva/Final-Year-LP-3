@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
+//to store item value and weight
 class Item {
     int value, weight;
     Item(int value, int weight) {
