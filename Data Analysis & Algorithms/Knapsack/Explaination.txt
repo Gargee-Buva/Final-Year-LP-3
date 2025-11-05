@@ -1,12 +1,48 @@
 javac FractionalKnapsack.java
 java FractionalKnapsack
 
-
+why 2 class files ?
 | File                        | What it Represents                 | Created Because Of                   |
 | --------------------------- | ---------------------------------- | ------------------------------------ |
 | `Item.class`                | Compiled bytecode for `Item` class | Separate top-level class             |
 | `UserInputKnapsack.class`   | Main class with `main()`           | Your public class                    |
 
 
-why 2 class files ?
+| Items | Weight | Value | Ratio (Value/Weight) |
+| ----- | ------ | ----- | -------------------- |
+| 1     | 5      | 30    | 6                    |
+| 2     | 10     | 40    | 4                    |
+| 3     | 15     | 45    | 3                    |
+| 4     | 22     | 77    | 3.5                  |
+| 5     | 25     | 90    | 3.6                  |
 
+sort all items in decreasing value of their value / weight ratio 
+i.e 6,4,3.6,3.5,3
+
+
+| Step | Item | Weight taken     | Remaining capacity (rem) | Value added       | Total value |
+| ---- | ---- | ---------------- | ------------------------ | ----------------- | ----------- |
+| 1    | I1   | 5                | 60 − 5 = 55              | 30                | 30          |
+| 2    | I2   | 10               | 55 − 10 = 45             | 40                | 70          |
+| 3    | I5   | 25               | 45 − 25 = 20             | 90                | 160         |
+| 4    | I4   | **20 (partial)** | 20 − 20 = **0**          | (20/22) × 77 ≈ 70 | 230         |
+
+
+| Term          | Meaning                       | Final value |
+| ------------- | ----------------------------- | ----------- |
+| `capacity`    | total weight the bag can hold | 60 kg       |
+| `rem`         | how much weight space is left | 0 kg        |
+| `total value` | total profit/value inside bag | 230 units   |
+
+
+What happened in the last step:
+1. The knapsack had 20 kg of space left.
+
+2. The next item (I4) weighed 22 kg → too heavy to fit completely.
+
+3. You took only 20 kg out of 22 kg (that’s 20/22 fraction of it).
+
+4. After adding those 20 kg, the knapsack is completely full,
+   so remaining capacity (rem) becomes 0 kg.
+
+5. But you still earned fractional value: (20/22) × 77 ≈ 70 units.
