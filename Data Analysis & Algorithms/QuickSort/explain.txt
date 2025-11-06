@@ -3,4 +3,167 @@
 | Deterministic | O(n log n) | O(n log n)                | O(n²)        | O(log n)         |
 | Randomized    | O(n log n) | **O(n log n)** (expected) | O(n²) (rare) | O(log n)         |
 
-do it for every practical program
+Quick Sort is a divide-and-conquer sorting algorithm.
+
+🔹 Steps:
+1. Choose a pivot element.
+2.Partition the array so that:
+all smaller elements go to the left of the pivot,
+all larger elements go to the right.
+3.Recursively repeat for left and right parts.
+
+The partition() function helps in doing so 
+
+1️⃣ Deterministic Quick Sort Example
+
+In deterministic Quick Sort, the pivot is always fixed, usually the last element of the subarray.
+Let’s use this small array:
+
+arr = [10, 7, 8, 9, 1, 5]
+
+🔹 Step 1: Choose Pivot (last element)
+
+Pivot = 5
+
+We now partition the array around pivot = 5.
+
+Elements smaller than 5 go to its left, and larger ones go to the right.
+
+Process:
+
+Compare 10 > 5 → no swap
+Compare 7 > 5 → no swap
+Compare 8 > 5 → no swap
+Compare 9 > 5 → no swap
+Compare 1 < 5 → swap(10, 1)
+
+
+After scanning:
+
+Array = [1, 7, 8, 9, 10, 5]
+
+
+Now place the pivot (5) at its correct position:
+
+Swap pivot(5) with arr[i+1]
+Array = [1, 5, 8, 9, 10, 7]
+
+
+Pivot 5 is at index 1.
+Left part [1] and right part [8, 9, 10, 7] are sorted recursively.
+
+🔹 Step 2: Next Pivot (right part)
+
+Now quick sort [8, 9, 10, 7], pivot = last element = 7
+
+Partition:
+
+Compare 8 > 7 → no swap
+Compare 9 > 7 → no swap
+Compare 10 > 7 → no swap
+
+
+Swap pivot (7) with first greater element (8):
+
+Array = [1, 5, 7, 9, 10, 8]
+
+
+Pivot 7 is now correctly placed.
+
+🔹 Step 3: Continue Recursion
+
+Then quick sort [9, 10, 8], pivot = 8
+Partition around 8 → pivot goes between smaller and larger numbers.
+
+Final sorted array after recursion:
+
+✅ Result: [1, 5, 7, 8, 9, 10]
+
+🔸 Key Points (Deterministic Quick Sort)
+
+Pivot = last (or fixed) element.
+
+Simple to implement.
+
+Worst case: O(n²) (e.g., if array already sorted).
+
+Average case: O(n log n).
+
+Space complexity: O(log n) for recursion stack.
+
+🎲 2️⃣ Randomized Quick Sort Example
+
+In Randomized Quick Sort, the pivot is chosen randomly before partitioning.
+This avoids the worst-case scenario (like sorted input).
+
+Example:
+
+arr = [10, 7, 8, 9, 1, 5]
+
+🔹 Step 1: Choose Pivot Randomly
+
+Let’s say the random pivot chosen = 8 (index 2).
+
+We swap it with the last element, so the partition logic remains unchanged:
+
+Swap arr[2] and arr[5]
+Array = [10, 7, 5, 9, 1, 8]
+
+
+Now pivot = 8 (last element).
+
+🔹 Step 2: Partition around Pivot = 8
+
+Compare each element with 8:
+
+10 > 8 → no swap
+7 < 8 → swap(10,7) → [7,10,5,9,1,8]
+5 < 8 → swap(10,5) → [7,5,10,9,1,8]
+9 > 8 → no swap
+1 < 8 → swap(10,1) → [7,5,1,9,10,8]
+
+
+Now place pivot (8) in correct position:
+
+Swap arr[i+1] (index 3) with pivot
+Array = [7, 5, 1, 8, 10, 9]
+
+
+Pivot 8 is now at index 3.
+Left subarray = [7,5,1], right subarray = [10,9].
+
+🔹 Step 3: Recursive Steps
+
+For [7,5,1], randomly choose a pivot again — say pivot = 5.
+Partition → [1, 5, 7].
+
+For [10,9], randomly pick pivot = 9 → [9,10].
+
+✅ Final Sorted Array: [1, 5, 7, 8, 9, 10]
+
+🔸 Key Points (Randomized Quick Sort)
+
+Pivot is chosen randomly each time.
+
+This reduces the probability of getting unbalanced partitions.
+
+Average time complexity remains O(n log n) even for sorted data.
+
+Randomization makes performance more consistent.
+
+Worst-case (though rare) is still O(n²).
+
+⚖️ Quick Comparison Summary
+Feature	Deterministic Quick Sort	Randomized Quick Sort
+Pivot Choice	Fixed (e.g., last element)	Random index
+Worst Case	O(n²) for sorted input	Very rare O(n²)
+Average Case	O(n log n)	O(n log n)
+Stability	Unstable	Unstable
+Advantage	Simpler implementation	Better average performance
+Use Case	Small/unsorted datasets	Large or nearly-sorted datasets
+
+✅ Final Understanding:
+
+Deterministic Quick Sort is predictable but can degrade badly on sorted data.
+
+Randomized Quick Sort uses a random pivot to “mix up” input, keeping performance consistently good.
