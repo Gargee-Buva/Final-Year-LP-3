@@ -1,0 +1,34 @@
+Experiment 10 – K-Means Clustering
+
+Question 1: What is clustering?
+Clustering is an unsupervised learning method that groups data points based on similarity, without using labeled outcomes.
+
+Question 2: What is K-Means?
+K-Means is an iterative algorithm that divides data into K clusters by minimizing the distance between points and their cluster centroids.
+
+Question 3: How does K-Means work?
+It starts by choosing K random centroids, assigns each point to the nearest centroid, recalculates the centroids, and repeats until assignments no longer change.
+
+Question 4: What is K in K-Means?
+K is the number of clusters you want to create. It’s a parameter chosen before running the algorithm.
+
+Question 5: How do you find the optimal number of clusters?
+Using the Elbow Method, where you plot the sum of squared errors (inertia) against K and choose the point where the curve bends, indicating minimal improvement beyond that point.
+
+Question 6: What is inertia?
+Inertia (or Within-Cluster Sum of Squares) measures how close the data points are to their respective centroids. Lower inertia indicates compact clusters.
+
+Question 7: What is a centroid?
+A centroid is the mean position of all data points in a cluster. It represents the cluster’s center.
+
+Question 8: Why do we scale data before clustering?
+Because K-Means relies on distance measures, scaling ensures all features contribute equally to the distance computation.
+
+Question 9: What is PCA and why is it used here?
+Principal Component Analysis reduces the dataset’s dimensions, making it easier to visualize clusters in 2D or 3D space.
+
+Question 10: What are limitations of K-Means?
+K-Means assumes spherical clusters and equal cluster sizes. It’s also sensitive to initial centroid positions and requires specifying K in advance.
+
+Question 11: How does hierarchical clustering differ from K-Means?
+Hierarchical clustering builds a tree-like structure (dendrogram) and doesn’t need K initially, whereas K-Means requires K upfront and is faster for large datasets.
