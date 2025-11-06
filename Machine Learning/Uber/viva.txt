@@ -1,0 +1,36 @@
+🧩 Experiment 6 – Uber Fare Prediction (Regression)
+
+Question 1: What is regression?
+Regression is a supervised learning method used to predict continuous numeric values based on input features. In this experiment, the goal is to predict the Uber fare amount using ride details such as pickup and drop-off coordinates.
+
+Question 2: What is the target variable?
+The target variable is fare_amount, which represents the total cost of the Uber ride that the model tries to predict.
+
+Question 3: What is data preprocessing and why is it important?
+Data preprocessing involves cleaning and preparing raw data by handling missing values, removing duplicates, converting data types, and scaling features. It ensures that the dataset is consistent and ready for model training.
+
+Question 4: What are outliers and how do you detect them?
+Outliers are data points that differ significantly from other observations. They can be detected using methods like boxplots, z-scores, or the Interquartile Range (IQR) method.
+
+Question 5: Why do we check correlation between features?
+Correlation shows how strongly two variables are related. Checking correlation helps us identify redundant or irrelevant features and select the ones that most influence the target variable.
+
+Question 6: What is Linear Regression?
+Linear Regression models the relationship between input features and a continuous target by fitting a straight line to the data, following the equation 
+
+y=mx+c.
+
+Question 7: What is Random Forest Regression?
+Random Forest Regression is an ensemble learning method that builds multiple decision trees and averages their outputs for more accurate and stable predictions.
+
+Question 8: What is the R² score?
+The R² score measures how well the model explains the variability of the target variable. A value closer to 1 indicates better model performance.
+
+Question 9: What is RMSE?
+Root Mean Square Error (RMSE) is the square root of the mean of squared prediction errors. It indicates how much predicted values deviate from actual values.
+
+Question 10: Why is feature scaling important?
+Feature scaling ensures all features contribute equally to the model, especially when features have different numerical ranges such as distance and time.
+
+Question 11: What is overfitting?
+Overfitting happens when a model learns the training data too well, including noise, and performs poorly on new unseen data.
