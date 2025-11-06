@@ -1,0 +1,32 @@
+5. Quick Sort (Deterministic and Randomized)
+
+1️⃣ What is Quick Sort?
+Quick Sort is a divide-and-conquer sorting algorithm that partitions the array around a pivot and recursively sorts the subarrays.
+
+2️⃣ How does Quick Sort work?
+It selects a pivot element, rearranges elements smaller than the pivot to its left and larger to its right, then recursively sorts both halves.
+
+3️⃣ What is deterministic Quick Sort?
+Deterministic Quick Sort uses a fixed rule for pivot selection (like first or last element), which can lead to worst-case performance for certain inputs.
+
+4️⃣ What is randomized Quick Sort?
+It selects a random pivot each time, which reduces the probability of encountering the worst case, leading to average O(n log n) performance.
+
+5️⃣ What are the best, average, and worst-case complexities?
+Best and average case: O(n log n).
+Worst case (bad pivot every time): O(n²).
+
+6️⃣ What is space complexity of Quick Sort?
+Quick Sort is in-place, requiring only O(log n) stack space on average for recursion.
+
+7️⃣ What is a pivot and why is it important?
+A pivot divides the array into two parts. Choosing a good pivot ensures balanced partitions and faster sorting.
+
+8️⃣ What is the partitioning method used?
+Common methods are Lomuto and Hoare partition schemes; both rearrange elements around the pivot.
+
+9️⃣ Why is Quick Sort faster in practice?
+Because it has excellent cache performance and low overhead compared to other O(n log n) sorts like Merge Sort.
+
+🔟 What is the main drawback of Quick Sort?
+It is not a stable sort (relative order of equal elements may change) and can degrade to O(n²) without good pivot selection.
