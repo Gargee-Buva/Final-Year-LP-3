@@ -1,0 +1,31 @@
+4. N-Queens Problem (Backtracking)
+
+1️⃣ What is the n-Queens problem?
+It involves placing n queens on an n×n chessboard so that no two queens threaten each other.
+
+2️⃣ What algorithm is used to solve it?
+Backtracking — a systematic search technique that tries placements and backtracks when conflicts occur.
+
+3️⃣ What are the constraints for placing a queen?
+No two queens should share the same row, column, or diagonal.
+
+4️⃣ What is the time complexity of n-Queens?
+The time complexity is roughly O(n!) because it explores permutations of queen placements.
+
+5️⃣ What data structures are used?
+Typically, arrays or lists are used to track column and diagonal positions for quick conflict checks.
+
+6️⃣ How does backtracking help here?
+It places queens row by row and abandons (backtracks) partial solutions that violate the constraints.
+
+7️⃣ How do you check if a position is safe?
+Check if the same column or either diagonal already contains a queen. If yes, that position is unsafe.
+
+8️⃣ What is the base condition in the algorithm?
+If all n queens are successfully placed (row index == n), a valid configuration is found.
+
+9️⃣ Why is backtracking better than brute force here?
+Backtracking eliminates impossible configurations early, reducing the number of checks drastically.
+
+🔟 Can there be multiple solutions?
+Yes, the n-Queens problem can have multiple valid solutions depending on n. For example, 4-Queens has 2 solutions.
