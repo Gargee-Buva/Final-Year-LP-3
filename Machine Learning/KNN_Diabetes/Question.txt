@@ -2,3 +2,134 @@ Implement K-Nearest Neighbors algorithm on diabetes.csv dataset. Compute
 confusion matrix, accuracy, error rate, precision and recall on the given 
 dataset.   
 Dataset link : https://www.kaggle.com/datasets/abdallamahgoub/diabetes 
+
+mlxtend adds helpful functions that are not included in scikit-learn, such as:
+
+Plotting decision boundaries
+Performing frequent pattern mining / association rules
+Implementing stacking or ensemble models
+Visualizing confusion matrices, learning curves, etc
+
+verbose=True
+Ensures all columns are shown in the output (even if there are many)
+
+diabetes_data.describe().T
+This command shows a statistical summary of all numeric columns in your dataset, and the .T 
+at the end transposes the result (flips rows and columns) for better readability.
+
+diabetes_data_copy = diabetes_data.copy(deep = True)
+Creates a deep copy of the original dataset so that:
+Any changes you make won’t affect diabetes_data.
+You can safely clean or modify data in diabetes_data_copy.
+
+missingno library — a Python tool for visualizing missing data in your dataset.
+This code installs and uses missingno to draw a bar graph that visually shows which columns in your dataset have missing values and how much data is missing.
+
+* Bar Chart :-
+The bar for Outcome = 0 is higher (≈ 500) → more non-diabetic patients.
+The bar for Outcome = 1 is lower (≈ 268) → fewer diabetic patients.
+
+* scatter plot:-
+To visualize pairwise relationships (correlations and patterns) between all numeric columns in the diabetes_data dataset.
+It creates a grid of scatter plots — each cell in the grid shows how two variables relate to each other
+
+* A pairplot (also called a scatterplot matrix) is a visualization that shows pairwise relationships between multiple numeric variables in a dataset — all in one grid.
+
+* To visualize correlations between numeric columns in the dataset as a color-coded matrix.
+It helps you quickly identify which variables are related and how strongly.
+| Part                       | Meaning                                                                                          |
+| -------------------------- | ------------------------------------------------------------------------------------------------ |
+| **`sns.heatmap()`**        | Creates a heatmap (color-based 2D correlation map) using Seaborn.                                |
+| **`diabetes_data.corr()`** | Calculates the **correlation matrix** — how strongly each numeric column relates to every other. |
+| **`annot=True`**           | Displays the **correlation values** inside each cell (numbers from -1 to +1).                    |
+| **`cmap='RdYlGn'`**        | Sets the color palette → **Red-Yellow-Green** (red = negative correlation, green = positive).    |
+
+What Correlation Means:
+
++1.0 → Perfect positive correlation (when one increases, the other also increases)
+–1.0 → Perfect negative correlation (when one increases, the other decreases)
+0 → No correlation (variables are unrelated)
+
+| Step | Code                             | Purpose                                   |
+| ---- | -------------------------------- | ----------------------------------------- |
+| 1    | `StandardScaler()`               | Initialize scaler                         |
+| 2    | `.fit_transform()`               | Standardize features (mean=0, std=1)      |
+| 3    | `drop(["Outcome"], axis=1)`      | Exclude target variable                   |
+| 4    | `pd.DataFrame(..., columns=...)` | Rebuild DataFrame with same feature names |
+
+This code scales all numeric columns in the diabetes dataset (except “Outcome”) so that each has a mean of 0 and standard deviation of 1 — making the data uniform and ready for machine learning algorithms.
+
+| Parameter             | Meaning                                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------------------------------- |
+| **`X`**               | All input features (scaled data)                                                                        |
+| **`y`**               | Output labels (Outcome column — diabetic or not)                                                        |
+| **`test_size=1/3`**   | 1/3 (≈33%) of the data is used for **testing**, and 2/3 (≈67%) for **training**                         |
+| **`random_state=42`** | Ensures the same random split every time you run the code (for reproducibility)                         |
+| **`stratify=y`**      | Keeps the **same proportion** of diabetic (1) and non-diabetic (0) cases in both training and test sets |
+
+Imports the KNN algorithm from scikit-learn.
+KNN classifies data points based on the majority class of their nearest neighbors.
+
+train_scores → model accuracy on training data
+test_scores → model accuracy on testing data
+
+This code trains multiple KNN models with different numbers of neighbors (1–14) and records their accuracy 
+on both training and test data — helping you find the best k value that gives the most reliable performance.
+
+🔹 What the graph shows
+
+At k = 1:
+
+Training accuracy = 1.0 (100%) → the model memorizes training data perfectly.
+Test accuracy is lower (~0.73) → poor generalization.
+✅ This is overfitting — model is too complex (fits training data exactly but fails on unseen data).
+
+As k increases (2–5):
+Training accuracy drops slightly (less memorization).
+
+Test accuracy slightly improves or stabilizes.
+✅ The model becomes more generalized — a better balance between training and testing performance.
+After k > 5:
+
+Both training and test accuracies flatten and remain steady around ~0.75–0.8.
+
+This means adding more neighbors doesn’t improve results much.
+⚠️ If k becomes too large, the model may underfit (too simple).
+
+🔹 How to choose the best k:
+
+The ideal value of k is where:
+
+Test accuracy is highest, and
+
+The gap between training and testing accuracy is smallest.
+
+From your graph:
+👉 k = 5 to 7 looks like a good choice — test accuracy is relatively high and stable there.
+
+This code trains a KNN model using 11 nearest neighbors and then prints its accuracy on the test dataset — showing how well the model can predict diabetes in unseen data
+
+precision = TP / (TP + FP)
+accuracy = (TP + TN) / (TP + TN + FP + FN)
+
+|               | **Predicted: 0**        | **Predicted: 1**        |
+| ------------- | ----------------------- | ----------------------- |
+| **Actual: 0** | **True Negative (TN)**  | **False Positive (FP)** |
+| **Actual: 1** | **False Negative (FN)** | **True Positive (TP)**  |
+
+| Metric                  | Meaning                                                   |
+| ----------------------- | --------------------------------------------------------- |
+| **Confusion Matrix**    | Table showing counts of correct and incorrect predictions |
+| **TP (True Positive)**  | Diabetics correctly identified                            |
+| **TN (True Negative)**  | Non-diabetics correctly identified                        |
+| **FP (False Positive)** | Non-diabetics incorrectly labeled as diabetic             |
+| **FN (False Negative)** | Diabetics missed by the model                             |
+
+in code last one :-
+| **Actual \ Predicted** | **0 (Non-Diabetic)**      | **1 (Diabetic)**          |
+| ---------------------- | ------------------------- | ------------------------- |
+| **0 (Non-Diabetic)**   | **80** (✅ True Negative)  | **20** (❌ False Positive) |
+| **1 (Diabetic)**       | **23** (❌ False Negative) | **31** (✅ True Positive)  |
+
+
+helping you see the model’s real strengths and weaknesses, not just its overall accuracy.
