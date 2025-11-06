@@ -1,0 +1,34 @@
+🏦 Experiment 8 – Bank Customer Churn Prediction (Neural Network)
+
+Question 1: What is customer churn?
+Customer churn refers to customers leaving a company or stopping a service. Predicting churn helps the company identify at-risk customers and take action to retain them.
+
+Question 2: What is an Artificial Neural Network (ANN)?
+ANN is a computational model inspired by biological neurons. It consists of input, hidden, and output layers that learn complex patterns through weight adjustments during training.
+
+Question 3: What are features and target variables in this experiment?
+The features include customer attributes such as Credit Score, Age, Tenure, and Balance, while the target variable is Exited, indicating whether the customer left (1) or stayed (0).
+
+Question 4: Why is normalization required in neural networks?
+Normalization scales feature values to a similar range (like 0–1). This prevents larger values from dominating the learning process and speeds up convergence.
+
+Question 5: What is an epoch?
+An epoch is one complete pass through the entire training dataset during model training. Multiple epochs help the model gradually minimize error.
+
+Question 6: What is a hidden layer?
+Hidden layers are intermediate layers between input and output layers. They extract features and capture non-linear relationships in the data.
+
+Question 7: What is an activation function?
+An activation function introduces non-linearity into the network. Common ones are ReLU, Sigmoid, and Tanh.
+
+Question 8: What optimizer is used in ANN?
+The Adam optimizer is often used because it adapts the learning rate during training for faster and more stable convergence.
+
+Question 9: What loss function is used for binary classification?
+Binary Cross-Entropy loss measures the difference between predicted probabilities and actual labels.
+
+Question 10: What is overfitting in ANN?
+Overfitting occurs when the model learns patterns and noise specific to training data and fails to generalize to unseen data. It can be reduced using dropout or regularization.
+
+Question 11: What is the purpose of the confusion matrix here?
+It helps to analyze model performance by showing correct and incorrect predictions, helping compute accuracy, precision, and recall.
