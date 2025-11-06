@@ -1,0 +1,31 @@
+3. Huffman Encoding (Greedy Strategy)
+
+1️⃣ What is Huffman Encoding?
+It’s a lossless data compression algorithm that assigns shorter binary codes to more frequent symbols.
+
+2️⃣ What is the main idea behind Huffman Encoding?
+Frequently occurring symbols should get shorter codes to reduce the average total code length.
+
+3️⃣ What data structure is used in Huffman Encoding?
+A priority queue (min-heap) is used to repeatedly extract two nodes with the smallest frequencies.
+
+4️⃣ How does the Huffman algorithm work?
+It repeatedly combines the two smallest frequency nodes to build a binary tree. Each left/right traversal adds 0 or 1 to a symbol’s code.
+
+5️⃣ Why is it a greedy algorithm?
+Because it makes the locally optimal choice (merging two smallest nodes) at each step, leading to a globally optimal result.
+
+6️⃣ What is a prefix code?
+A code in which no symbol’s code is a prefix of another. This property ensures that decoding is unambiguous.
+
+7️⃣ What is the time complexity of Huffman coding?
+O(n log n), where n is the number of unique symbols, due to heap operations.
+
+8️⃣ What is the space complexity?
+O(n), since each character and its code must be stored.
+
+9️⃣ What is the advantage of Huffman encoding?
+It minimizes the average number of bits used per character, achieving high compression efficiency.
+
+🔟 How can Huffman encoding be used in real life?
+It’s used in file compression algorithms such as ZIP, GZIP, and multimedia formats like JPEG and MP3.
