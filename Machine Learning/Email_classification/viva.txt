@@ -1,0 +1,34 @@
+📧 Experiment 7 – Email Spam Classification (Binary Classification)
+
+Question 1: What type of problem is this?
+This is a binary classification problem, where each email is classified as either Spam (1) or Not Spam (0).
+
+Question 2: What is K-Nearest Neighbors (KNN)?
+KNN is a non-parametric algorithm that classifies a data point based on the majority class among its nearest K neighbors using a distance metric like Euclidean distance.
+
+Question 3: How do we decide the value of K in KNN?
+The value of K is selected using experimentation or cross-validation. Small K values make the model sensitive to noise, while large K values may oversimplify the classification.
+
+Question 4: What is Support Vector Machine (SVM)?
+SVM is a classification algorithm that finds the optimal hyperplane that separates different classes in the dataset with maximum margin.
+
+Question 5: What is a kernel in SVM?
+A kernel is a mathematical function that transforms data into a higher-dimensional space where it becomes linearly separable. Common kernels include linear, polynomial, and RBF.
+
+Question 6: What is accuracy in classification?
+Accuracy measures how many total predictions the model got correct out of all predictions made. It’s the ratio of correctly classified samples to total samples.
+
+Question 7: What is precision?
+Precision tells how many predicted positive samples were actually correct. It focuses on the quality of positive predictions.
+
+Question 8: What is recall?
+Recall measures how many actual positive samples were correctly identified by the model. It focuses on completeness.
+
+Question 9: What is the F1-score?
+The F1-score is the harmonic mean of precision and recall, useful when dealing with imbalanced datasets.
+
+Question 10: What is a confusion matrix?
+A confusion matrix shows the comparison between actual and predicted results in four categories: True Positives, False Positives, True Negatives, and False Negatives.
+
+Question 11: How is text converted into numerical features?
+Techniques like Bag of Words or TF-IDF (Term Frequency–Inverse Document Frequency) are used to convert text data into numerical feature vectors for model training.
