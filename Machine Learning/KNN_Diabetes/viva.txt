@@ -1,0 +1,31 @@
+experiment 9 – Diabetes Prediction using KNN
+
+Question 1: What is the objective of this experiment?
+The goal is to predict whether a person has diabetes based on health features like glucose level, BMI, and age using the KNN algorithm.
+
+Question 2: What kind of algorithm is KNN?
+KNN is a lazy learning, instance-based algorithm that stores training data and classifies new samples by comparing them with existing data points.
+
+Question 3: How does KNN work?
+It computes the distance between the test point and all training points, selects the K closest neighbors, and assigns the class most common among them.
+
+Question 4: Why is scaling important in KNN?
+Since KNN uses distance calculations, features with larger values can dominate the results. Scaling brings all features to the same range, ensuring fair distance measurement.
+
+Question 5: What distance metric is used?
+Euclidean distance is the most common metric, calculated as the square root of the sum of squared differences between corresponding features.
+
+Question 6: What is a confusion matrix?
+It’s a 2x2 table showing True Positives, False Positives, True Negatives, and False Negatives — helping evaluate the model’s accuracy.
+
+Question 7: What is precision?
+Precision indicates the proportion of correctly predicted positive cases out of all predicted positives.
+
+Question 8: What is recall?
+Recall measures how many actual positive cases were correctly identified by the model.
+
+Question 9: What is the F1-score?
+The F1-score combines precision and recall into a single metric, especially useful when dealing with class imbalance.
+
+Question 10: What are the advantages and disadvantages of KNN?
+KNN is simple and intuitive, but it’s slow for large datasets and sensitive to noisy or irrelevant features.
