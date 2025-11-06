@@ -1,0 +1,31 @@
+2. Fractional Knapsack Problem (Greedy Method)
+
+1️⃣ What is the knapsack problem?
+It’s an optimization problem where you must maximize total value while staying within a weight limit.
+
+2️⃣ What is the difference between 0/1 and fractional knapsack?
+In 0/1 knapsack, you must take the entire item or leave it. In fractional knapsack, you can take parts (fractions) of items.
+
+3️⃣ What is the greedy strategy used here?
+Sort items by their value-to-weight ratio and pick the highest ratio items first until the knapsack is full.
+
+4️⃣ Why does the greedy method give an optimal solution here?
+Because taking the highest value-per-weight item first maximizes the total value without violating constraints.
+
+5️⃣ What is the time complexity of the fractional knapsack algorithm?
+O(n log n), due to sorting items by value/weight ratio.
+
+6️⃣ What is the space complexity?
+O(1) extra space, aside from the input arrays.
+
+7️⃣ Why doesn’t the greedy approach work for 0/1 knapsack?
+Because 0/1 knapsack doesn’t allow splitting items, so greedy may miss the optimal combination.
+
+8️⃣ What happens if two items have the same value/weight ratio?
+The order doesn’t matter in that case; either can be taken first since both contribute equally.
+
+9️⃣ What is the objective function of the knapsack problem?
+Maximize ∑(value_i × fraction_i) such that ∑(weight_i × fraction_i) ≤ capacity.
+
+🔟 How is the fraction of an item chosen?
+If remaining capacity < item’s weight, take (capacity/weight) portion of its value and stop.
