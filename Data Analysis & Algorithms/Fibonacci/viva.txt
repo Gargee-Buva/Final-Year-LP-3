@@ -1,0 +1,31 @@
+1. Fibonacci Series (Recursive and Non-Recursive)
+
+1️⃣ What is the Fibonacci sequence?
+It’s a series of numbers where each term is the sum of the two previous ones: 0, 1, 1, 2, 3, 5, 8, and so on.
+
+2️⃣ What is the recursive formula for Fibonacci?
+The recurrence relation is F(n) = F(n−1) + F(n−2), with base cases F(0)=0 and F(1)=1.
+
+3️⃣ How does the recursive Fibonacci program work?
+It breaks the problem into smaller subproblems by calling itself for F(n−1) and F(n−2) until base conditions are met.
+
+4️⃣ What is the time complexity of the recursive Fibonacci algorithm?
+O(2ⁿ), because it repeatedly recalculates overlapping subproblems.
+
+5️⃣ What is the space complexity of the recursive Fibonacci algorithm?
+O(n), due to the recursion call stack depth.
+
+6️⃣ How does the non-recursive Fibonacci algorithm work?
+It uses a simple loop to add the previous two numbers and generate the next Fibonacci number in O(n) time.
+
+7️⃣ What is the time and space complexity of the iterative version?
+Time complexity is O(n), and space complexity is O(1) because it uses only a few variables.
+
+8️⃣ Why is the recursive Fibonacci inefficient?
+Because it recalculates the same subproblems many times, leading to exponential time complexity.
+
+9️⃣ How can recursion be optimized in Fibonacci?
+By using memoization or dynamic programming to store and reuse previously computed results.
+
+🔟 Which approach is better and why?
+The iterative version is generally preferred because it’s faster, uses less memory, and avoids stack overflow.
