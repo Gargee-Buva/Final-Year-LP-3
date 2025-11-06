@@ -1,0 +1,135 @@
+Algorithm (high level — steps in the notebook)
+
+1.Import libraries
+
+matplotlib, numpy, pandas, scikit-learn modules, tabulate, statistics (etc.)
+
+2.Load dataset
+
+uber = pd.read_csv('uber.csv')
+
+3.Initial inspection
+
+uber.head(), uber.info(), uber.isnull().sum() — inspect columns, types, missing values.
+
+4.Basic cleaning / remove unnecessary columns
+
+Drop Unnamed: 0 and key:
+
+uber_2 = uber.drop(['Unnamed: 0','key'], axis=1)
+
+Drop rows with any NaN:
+
+uber_2.dropna(axis=0, inplace=True)
+
+5.Define haversine distance function
+
+Convert degrees → radians and compute great-circle distance in km:
+
+haversine(lon1, lon2, lat1, lat2) -> distance_km
+
+6. Create Distance feature
+
+uber_2['Distance'] = haversine(pickup_longitude, dropoff_longitude, pickup_latitude, dropoff_latitude)
+
+Round / cast to float: uber_2['Distance'] = uber_2['Distance'].astype(float).round(2)
+
+7. Initial exploratory statistics
+
+uber_2.describe(), median/std of Distance, histograms / scatterplots (Distance vs fare_amount), etc.
+
+8. Filter / remove outliers and invalid rows
+
+Remove unrealistic trips:
+
+uber_2.drop(uber_2[uber_2['Distance'] > 60].index, inplace=True)
+
+uber_2.drop(uber_2[uber_2['Distance'] == 0].index, inplace=True)
+
+Remove bad fare values:
+
+uber_2.drop(uber_2[uber_2['fare_amount'] == 0].index, inplace=True)
+
+uber_2.drop(uber_2[uber_2['fare_amount'] < 0].index, inplace=True)
+
+Remove inconsistent combinations:
+
+high fare with tiny distance, or huge distance with low fare:
+
+uber_2.drop((fare_amount > 100) & (Distance < 1))
+
+uber_2.drop((fare_amount < 100) & (Distance > 100))
+
+9. Date/time feature engineering
+
+Convert to datetime:
+
+uber_2['pickup_datetime'] = pd.to_datetime(uber_2['pickup_datetime'])
+
+Extract features:
+
+Year, Month, Day, Day of Week (both numeric and mapped string), Hour
+
+Create counter = 1 to count trips where needed.
+
+10.Location text features (optional)
+
+Concatenate lat,long to string keys:
+
+uber_2['pickup'] = pickup_lat + ',' + pickup_lon
+
+uber_2['drop off'] = dropoff_lat + ',' + dropoff_lon
+
+11.Aggregation / time series grouping (EDA)
+
+Group by year/month, or day of week, to compute:
+
+number of trips, total fare, avg distance, etc.
+
+Plot trends: trips vs months, trips by day of week, hourly distribution, fare distribution.
+
+12. Correlation analysis
+
+corr = uber_2.select_dtypes(include='number').corr() and visualize.
+
+13. Prepare features & target for modeling
+
+Select X = uber_2['Distance'] as independent variable (reshaped to 2D).
+
+y = uber_2['fare_amount'] as dependent variable.
+
+14. Scaling
+
+Use StandardScaler:
+
+std = StandardScaler()
+
+x_std = std.fit_transform(X)
+
+y_std = std.fit_transform(y) (note: scaling target is uncommon for linear reg but notebook does it)
+
+15.Train/test split
+
+train_test_split(x_std, y_std, test_size=0.2, random_state=0)
+
+16.Train model
+
+Fit LinearRegression() on training set:
+
+l_reg = LinearRegression(); l_reg.fit(X_train, y_train)
+
+17. Evaluate
+
+Print R² on training and test sets.
+
+Predict y_pred = l_reg.predict(X_test)
+
+Show sample Actual vs Predicted table.
+
+Compute metrics: MAE, MSE, RMSE using sklearn.metrics.
+
+18. Visualize model
+
+Scatter plots of train/test vs regression line; other diagnostic plots.
+
+19. (End) — Notebook produces printed metrics and visualizations.
